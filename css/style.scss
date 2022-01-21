@@ -15,27 +15,23 @@ body {
     }
 }
 
-.line {
-    border-top: 4px solid $title-color;
-    z-index: 2;
-}
-
 .container {
+    border-top: 4px solid $title-color;
     z-index: 1;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0 auto;
     padding: 0 10px;
     background: $white;
     @include desktop {
         width: 70%;
-        box-shadow: 0px 0px 8px 0px #ccc;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     }
     @include tablet {
         width: 70%;
-        box-shadow: 0px 0px 8px 0px #ccc;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     }
     @include mobile {
-        width: 98%;
+        width: 100%;
     }
     h1 {
         color: $title-color;
@@ -67,6 +63,12 @@ body {
         input:focus-visible {
             outline: 0px;
         }
+        input:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
+        input::placeholder {
+            color: #ccc
+        }
         button {
             width: 10%;
             border-radius: 4px;
@@ -81,30 +83,92 @@ body {
             color: white;
         }
     }
-    .task-list-container {
+    .task-area {
         margin: 14px 0;
         display: flex;
         flex-direction: row;
         justify-content: left;
         align-items: center;
         flex-wrap: wrap;
-        border: 1px solid #ccc;
-        border-radius: 4px 4px 0 0;
-        div {
-            font-size: 1em;
-            height: 40px;
+        .task-tabs {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            border: 1px solid #ccc;
+            border-radius: 4px 4px 0 0;
             text-align: center;
-            line-height: 40px;
-            color: $basic-color;
-            width: 80px;
-            @include mobile {
-                width: 33.3%;
+            div {
+                font-size: 1em;
+                height: 60px;
+                line-height: 60px;
+                color: $basic-color;
+                width: 100px;
+                padding: 0 20px;
+                @include mobile {
+                    width: 33.3%;
+                }
+            }
+            div:hover {
+                border-bottom: 4px solid $title-color;
+                font-weight: bold;
+                cursor: pointer;
             }
         }
-        div:hover {
-            border-bottom: 4px solid $title-color;
-            font-weight: bold;
-            cursor: pointer;
+    }
+    #task-board {
+        width: 100%;
+        .task {
+            border-bottom: 1px dashed #ccc;
+            height: 60px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            padding: 0 0 0 8px;
+            .inputValue {
+                padding-left: 20px;
+            }
+            .taskLine {
+                text-decoration: line-through;
+            }
+            .button-box {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                .box-btn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: 1px;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 4px;
+                    padding: 0.6em;
+                    @include mobile {
+                        padding: 0.6em 0;
+                    }
+                }
+                .bg01 {
+                    background: $reset;
+                }
+                .bg02 {
+                    background: $check;
+                }
+                .bg03 {
+                    background: $delete;
+                }
+                i {
+                    color: white;
+                    font-size: 24px;
+                }
+            }
         }
     }
+}
+
+.hidden {
+    display: none;
 }
