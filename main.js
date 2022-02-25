@@ -13,11 +13,17 @@ userInput.addEventListener("keyup", function(event) {
         addTask(event);
     }
 });
+
+
+
 for (let i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", function(event) {
         filter(event);
+        
     });
 }
+
+
 
 function addTask() {
     let taskValue = userInput.value;
@@ -33,15 +39,21 @@ function addTask() {
     render();
 }
 
-function render() {
+function render(e) {
     let result = "";
     list = [];
+    window.getSelection()
+       
+   
+
     if (selectedMenu === "tab-all") {
+       
         list = taskList;
     } else if (selectedMenu === "tad-not-Done" || selectedMenu === "Done") {
         list = filteredList;
     }
 
+ 
     for (let i = 0; i < list.length; i++) {
         if (list[i].isComplete == true) {
             console.log("click")
@@ -71,6 +83,7 @@ function toggle_done(id) {
     for (let i = 0; i < taskList.length; i++) {
         if (taskList[i].id === id) {
             taskList[i].isComplete = !taskList[i].isComplete;
+
             break;
         }
     }
@@ -90,10 +103,15 @@ function deleteTask(id) {
 function filter(e) {
     if (e) {
         selectedMenu = e.target.id;
-        underLine.style.width = e.target.offsetWidth + "px";
-        underLine.style.left = e.target.offsetLeft + "px";
-        underLine.style.top =
-            e.target.offsetTop + (e.target.offsetHeight - 4) + "px";
+       
+        // underLine.style.width = e.target.offsetWidth + "px";
+        // underLine.style.left = e.target.offsetLeft + "px";
+        // underLine.style.top =
+        //     e.target.offsetTop + (e.target.offsetHeight - 4) + "px";
+       
+        
+       
+        
     }
 
     filteredList = [];
